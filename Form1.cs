@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,11 +28,12 @@ namespace RSAProject
             input = int.Parse(Choice.Text);
             if(input == 1)
             {
-                FileStream f = new FileStream("ADD.txt", FileMode.Append);
+                FileStream f = new FileStream("DIV.txt", FileMode.Append);
                 StreamWriter sw = new StreamWriter(f);
                 string first = FirstNum.Text;
                 string second = SecondNum.Text;
-                Result.Text = BigInt.Add(first, second).ToString();
+                Tuple<string, string> Answer = BigInt.DIV(first , second);
+                Result.Text = (Answer.Item1).ToString(); //BigInt.DIV(first, second).ToString();
                 sw.WriteLine(Result.Text);
                 sw.Close();
                 f.Close();
@@ -58,6 +59,13 @@ namespace RSAProject
                 sw.WriteLine(Result.Text);
                 sw.Close();
                 f.Close();
+            }
+            else if (input == 4)
+            {
+                string first = FirstNum.Text;
+                string second = SecondNum.Text;
+                string third = ThirdNum.Text;
+                Result.Text = BigInt.ModOfPower(first, second , third).ToString();
             }
             else
             {
